@@ -1,3 +1,4 @@
+require('dotenv/config')
 const express = require ('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
@@ -6,13 +7,13 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-mongoose.connect(
-    process.env.DB_CONNECTION,{
+mongoose
+  .connect(process.env.DB_CONNECTION, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useFindAndModify: false,
-    }
-)
+    })
+
 .then(() => {
     app.listen('5000', () => {
         console.log('listening on port 5000')
